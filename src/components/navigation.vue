@@ -1,7 +1,19 @@
-  <script setup>
-  
-  </script>
-  <template>
+<script setup>
+import { useAuthStore } from "../stores/login";
+import { storeToRefs } from "pinia";
+import { useRouter } from "vue-router";
+const router = useRouter();
+
+const { user } = storeToRefs(useAuthStore());
+const { logout } = useAuthStore();
+
+const logoutUser = () => {
+    logout();
+    router.push("/");
+};
+
+</script>
+<template>
     <div class="w-full p-3">
         <img src="../assets/vue.svg" />
     </div>
@@ -35,8 +47,7 @@
                 </a>
             </li>
             <li>
-                <a href=""
-                    class="flex items-center p-2 text-base font-normal text-gray-400 rounded-lg  hover:bg-gray-100 ">
+                <a href="" class="flex items-center p-2 text-base font-normal text-gray-400 rounded-lg  hover:bg-gray-100 ">
                     <svg aria-hidden="true"
                         class="w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 "
                         fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
@@ -47,8 +58,7 @@
                 </a>
             </li>
             <li>
-                <a href=""
-                    class="flex items-center p-2 text-base font-normal  rounded-lg text-gray-400 hover:bg-gray-100 ">
+                <a href="" class="flex items-center p-2 text-base font-normal  rounded-lg text-gray-400 hover:bg-gray-100 ">
                     <svg aria-hidden="true"
                         class="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
                         fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
@@ -66,8 +76,10 @@
             </li>
 
             <li class="absolute bottom-6 text-white left-0">
-
-                <router-link class="px-6 py-2 block" :to="{ name: 'login' }">Logout</router-link>
+                <button @click="logoutUser"
+                    class="flex items-center p-2 text-base font-normal  rounded-lg text-gray-400 hover:bg-gray-100 ">
+                    Logout
+                </button>
             </li>
         </ol>
     </div>

@@ -1,43 +1,62 @@
 
 <script setup>
+// import Spin from "@componets/Spin.vue";
 import { ref } from "vue";
-import axios from "axios";
+// import axios from "axios";
 // import { useStore } from "vuex";
+
+import { useAuthStore } from "../stores/login";
+import { storeToRefs } from "pinia";
+
 import { useRouter } from "vue-router"
 const router = useRouter();
 
-const test = ref();
-const user = ref();
+// const test = ref();
+// const user = ref();
+
+const { login: loginUser } = useAuthStore();
+const {   responseOK } = storeToRefs(useAuthStore());
 
 const email_adress = ref();
 const password = ref();
 
-const addItemAndClear = () => {
-    const api = `http://127.0.0.1:8000/api/login`
-    const paylod = {
+// const addItemAndClear = () => {
+//     const api = `http://127.0.0.1:8000/api/login`
+//     const paylod = {
+//         email_adress: email_adress.value,
+//         password: password.value
+//     }
+//     axios.post(api, paylod).then((res) => {
+//         console.log(res)
+//         user.value=res.data;
+//         localStorage.setItem(user,res.date);
+//         router.push("/dashboard");
+
+//     }).catch((err) => {
+//         console.log(err)
+
+//     })
+//     console.log(test);
+
+
+// }
+
+const login = async () => {
+    const body = {
         email_adress: email_adress.value,
-        password: password.value
-    }
-    axios.post(api, paylod).then((res) => {
-        console.log(res)
-        user.value=res.data;
-        localStorage.setItem(user,res.date);
+        password: password.value,
+    };
+    await loginUser(body);
+    if (responseOK.value) {
         router.push("/dashboard");
-
-    }).catch((err) => {
-        console.log(err)
-
-    })
-    console.log(test);
-
-
-}
+    }
+};
 
 </script>
 
 <template>
     <div class=" grid h-screen place-items-center">
-        <form @submit.prevent="addItemAndClear" class="w-full max-w-sm">
+        <form @submit.prevent="login" class="w-full max-w-sm">
             <div class="mb-6">
                 <label for="username" class="block text-sm font-semibold leading-6 text-gray-900">Username</label>
                 <input type="text" placeholder="user@xyz.com" name="email_adress" id="email_adress"
@@ -54,10 +73,10 @@ const addItemAndClear = () => {
             <button type="submit"
                 class="inline-flex justify-center rounded-lg text-sm font-semibold py-2.5 px-4 text-sky-50 bg-blue-500 hover:text-sky-50/80 hover:bg-teal-500 w-full">
                 <!-- <Spin v-if="pending" /> -->
-                <span>Login</span>
+                <span >Login</span>
             </button>
             <p class="mt-6 text-center">
-                <a href="dashboard" class="text-sm hover:underline">Forgot password?</a>
+                <a href="register" class="text-sm hover:underline">Register?</a>
             </p>
         </form>
     </div>
