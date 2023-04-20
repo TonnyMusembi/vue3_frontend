@@ -5,7 +5,7 @@
     <div class="w-full p-3">
         <img src="../assets/vue.svg" />
     </div>
-    <div class="fixed w-64 left-0 top-0 bottom-0 border-r bg-teal-800">
+    <div class="fixed w-64 left-0 top-0 bottom-0 border-r bg-black">
 
         <ol class="mt-8 w-full text-sm font-gotham">
             <li class="text-white text-opacity-75 mb-2 border-l-4 rounded-lg border-blue-500 border-opacity-0" :class="{

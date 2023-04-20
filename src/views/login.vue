@@ -7,6 +7,7 @@ import { useRouter } from "vue-router"
 const router = useRouter();
 
 const test = ref();
+const user = ref();
 
 const email_adress = ref();
 const password = ref();
@@ -14,12 +15,14 @@ const password = ref();
 const addItemAndClear = () => {
     const api = `http://127.0.0.1:8000/api/login`
     const paylod = {
-        username: email_adress.value,
+        email_adress: email_adress.value,
         password: password.value
     }
     axios.post(api, paylod).then((res) => {
         console.log(res)
-        router.push("/dashboard")
+        user.value=res.data;
+        localStorage.setItem(user,res.date);
+        router.push("/dashboard");
 
     }).catch((err) => {
         console.log(err)
