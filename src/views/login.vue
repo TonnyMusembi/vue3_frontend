@@ -1,7 +1,7 @@
 
 <script setup>
 import Spin from "../components/Spin.vue";
-import { ref } from "vue";
+import { ref , onUnmounted } from "vue";
 
 
 import { useAuthStore } from "../stores/login";
@@ -13,7 +13,7 @@ const router = useRouter();
 // const test = ref();
 // const user = ref();
 
-const { login: loginUser } = useAuthStore();
+const { login: loginUser, clearErrors } = useAuthStore();
 const {  error,pending, responseOK } = storeToRefs(useAuthStore());
 
 const email_adress = ref();
@@ -30,6 +30,9 @@ const login = async () => {
     }
 };
 
+onUnmounted(() => {
+    clearErrors();
+});
 </script>
 
 <template>
