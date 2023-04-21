@@ -1,9 +1,8 @@
 
 <script setup>
-// import Spin from "@componets/Spin.vue";
+import Spin from "../components/Spin.vue";
 import { ref } from "vue";
-// import axios from "axios";
-// import { useStore } from "vuex";
+
 
 import { useAuthStore } from "../stores/login";
 import { storeToRefs } from "pinia";
@@ -15,31 +14,10 @@ const router = useRouter();
 // const user = ref();
 
 const { login: loginUser } = useAuthStore();
-const {  error, responseOK } = storeToRefs(useAuthStore());
+const {  error,pending, responseOK } = storeToRefs(useAuthStore());
 
 const email_adress = ref();
 const password = ref();
-
-// const addItemAndClear = () => {
-//     const api = `http://127.0.0.1:8000/api/login`
-//     const paylod = {
-//         email_adress: email_adress.value,
-//         password: password.value
-//     }
-//     axios.post(api, paylod).then((res) => {
-//         console.log(res)
-//         user.value=res.data;
-//         localStorage.setItem(user,res.date);
-//         router.push("/dashboard");
-
-//     }).catch((err) => {
-//         console.log(err)
-
-//     })
-//     console.log(test);
-
-
-// }
 
 const login = async () => {
     const body = {
@@ -73,8 +51,8 @@ const login = async () => {
             <p class="text-red-500 mb-6 text-sm">{{ error }}</p>
             <button type="submit"
                 class="inline-flex justify-center rounded-lg text-sm font-semibold py-2.5 px-4 text-sky-50 bg-blue-700 hover:text-sky-50/80 hover:bg-blue-500 w-full">
-                <!-- <Spin v-if="pending" /> -->
-                <span >Login</span>
+                <Spin v-if="pending" />
+                <span v-else >Login</span>
             </button>
             <p class="mt-6 text-center">
                 <a href="register" class="text-sm hover:underline">Register?</a>

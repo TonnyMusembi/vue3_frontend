@@ -8,7 +8,7 @@ import { ref } from "vue";
 const router = useRouter();
 const { createUser } = useCreateUserStore();
 
-const {  responseOK } = storeToRefs(
+const { responseOK,error } = storeToRefs(
     useCreateUserStore()
 );
 const email_adress = ref();
@@ -42,11 +42,11 @@ const register = async () => {
                     class="mt-2 appearance-none text-slate-900 bg-white rounded-md block w-full px-3 h-10 shadow-sm sm:text-sm focus:outline-none placeholder:text-slate-400 focus:ring-2 focus:ring-[#37899A] ring-1 ring-slate-200"
                     aria-required required v-model="password" minlength="6" />
             </div>
-            <!-- <p class="text-red-500 mb-6 text-sm">{{ error }}</p> -->
+            <p class="text-red-500 mb-6 text-sm">{{ error }}</p>
             <button type="submit"
                 class="inline-flex justify-center rounded-lg text-sm font-semibold py-2.5 px-4 text-sky-50 bg-blue-500 hover:text-sky-50/80 hover:bg-teal-500 w-full">
                 <!-- <Spin v-if="pending" /> -->
-                <span>Login</span>
+                <span>Register</span>
             </button>
             <p class="mt-6 text-center">
                 <a href="/" class="text-sm hover:underline">login?</a>
