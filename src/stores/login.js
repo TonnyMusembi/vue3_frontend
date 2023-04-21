@@ -3,6 +3,7 @@ import axios from "axios";
 // import API from "../services/API";
 export const useAuthStore = defineStore("auth-store", {
     state: () => ({
+        viewToDisplay: "LOGIN",
         pending: false,
         error: "",
         user: null,
@@ -10,6 +11,9 @@ export const useAuthStore = defineStore("auth-store", {
     }),
 
     actions: {
+        setViewToDisplay(view) {
+            this.viewToDisplay = view;
+        },
         async login(body) {
             try {
                 this.pending = true;

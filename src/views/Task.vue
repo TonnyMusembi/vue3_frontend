@@ -73,6 +73,8 @@ function formatDate(date) {
                             <label v-if="task.status_id === 1">
                                 Active
                             </label>
+                            <label v-else>
+                                No Status </label>
                         </td>
                         <td class="py-1">{{ formatDate(task.created_at) }}</td>
                         <td class="py-1 text-teal-500 hover:underline">edit</td>
