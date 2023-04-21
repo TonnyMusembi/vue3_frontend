@@ -18,7 +18,6 @@ export const useAuthStore = defineStore("auth-store", {
           "http://127.0.0.1:8000/api/login",
           body
         );
-        // localStorage.setItem("token", response.data);
         this.pending = false;
         console.log(data);
         this.user = data;

@@ -15,7 +15,7 @@ const router = useRouter();
 // const user = ref();
 
 const { login: loginUser } = useAuthStore();
-const {   responseOK } = storeToRefs(useAuthStore());
+const {  error, responseOK } = storeToRefs(useAuthStore());
 
 const email_adress = ref();
 const password = ref();
@@ -55,11 +55,12 @@ const login = async () => {
 </script>
 
 <template>
+ 
     <div class=" grid h-screen place-items-center">
         <form @submit.prevent="login" class="w-full max-w-sm">
             <div class="mb-6">
-                <label for="username" class="block text-sm font-semibold leading-6 text-gray-900">Username</label>
-                <input type="text" placeholder="user@xyz.com" name="email_adress" id="email_adress"
+                <label for="username" class="block text-sm font-semibold leading-6 text-gray-900">Email</label>
+                <input type="email" placeholder="user@xyz.com" name="email_adress" id="email_adress"
                     class="mt-2 appearance-none text-slate-900 bg-white rounded-md block w-full px-3 h-10 shadow-sm sm:text-sm focus:outline-none placeholder:text-slate-400 focus:ring-2 focus:ring-[#37899A] ring-1 ring-slate-200"
                     required v-model="email_adress" />
             </div>
@@ -69,9 +70,9 @@ const login = async () => {
                     class="mt-2 appearance-none text-slate-900 bg-white rounded-md block w-full px-3 h-10 shadow-sm sm:text-sm focus:outline-none placeholder:text-slate-400 focus:ring-2 focus:ring-[#37899A] ring-1 ring-slate-200"
                     aria-required required v-model="password" minlength="6" />
             </div>
-            <!-- <p class="text-red-500 mb-6 text-sm">{{ error }}</p> -->
+            <p class="text-red-500 mb-6 text-sm">{{ error }}</p>
             <button type="submit"
-                class="inline-flex justify-center rounded-lg text-sm font-semibold py-2.5 px-4 text-sky-50 bg-blue-500 hover:text-sky-50/80 hover:bg-teal-500 w-full">
+                class="inline-flex justify-center rounded-lg text-sm font-semibold py-2.5 px-4 text-sky-50 bg-blue-700 hover:text-sky-50/80 hover:bg-blue-500 w-full">
                 <!-- <Spin v-if="pending" /> -->
                 <span >Login</span>
             </button>

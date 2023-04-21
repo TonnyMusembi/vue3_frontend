@@ -31,7 +31,7 @@ const register = async () => {
     <div class=" grid h-screen place-items-center">
         <form @submit.prevent="register" class="w-full max-w-sm">
             <div class="mb-6">
-                <label for="username" class="block text-sm font-semibold leading-6 text-gray-900">Username</label>
+                <label for="username" class="block text-sm font-semibold leading-6 text-gray-900">Email</label>
                 <input type="text" placeholder="user@xyz.com" name="email_adress" id="email_adress"
                     class="mt-2 appearance-none text-slate-900 bg-white rounded-md block w-full px-3 h-10 shadow-sm sm:text-sm focus:outline-none placeholder:text-slate-400 focus:ring-2 focus:ring-[#37899A] ring-1 ring-slate-200"
                     required v-model="email_adress" />
